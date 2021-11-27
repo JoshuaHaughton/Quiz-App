@@ -57,7 +57,7 @@ app.get("/register", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("inlogindex");
+  res.render("login");
 });
 
 app.get("/quiz", (req, res) => {
