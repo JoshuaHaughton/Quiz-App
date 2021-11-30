@@ -10,6 +10,7 @@ module.exports = (db) => {
     db.query(`
     SELECT title, description
     FROM quizzes
+    WHERE public = true
     LIMIT 3;
     `)
       .then(data => {
