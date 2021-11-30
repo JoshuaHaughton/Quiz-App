@@ -1,23 +1,22 @@
-// const express = require('express');
-// const router = express.Router();
+/* eslint-disable camelcase */
+const express = require('express');
+const router = express.Router();
 
-// module.exports = (db) => {
-//   //displays all the publicly available quizzes
-//   router.get("/", (req, res) => {
-//     //const user_id = req.session.user_id;
-//     db.getQuizzes(10)
-//       .then(data => {
-//         const templateVars = {
-//           //user_id,
-//           quizzes: data
-//         };
-//         res.render("view_quizzes", templateVars);
-//       })
-//       .catch(err => {
-//         res
-//           .status(500)
-//           .json({ error: err.message });
-//       });
-//   });
-//   return router;
-// };
+module.exports = (db) => {
+
+  router.get("/:quizid/quiz", (req, res) => {
+    req.session.quiz_id = req.params.quizid;
+    db.query(`
+       SELECT id, owner_id
+       FROM quizzes
+       WHERE id = $1`, [req.params.quizid])
+      .then(data => {
+        let templateVar = { quizId: req.params.quizid, user: data.rows[0] };
+        res.render('../views/quiz', templateVar);
+      });
+  });
+
+
+
+  return router;
+};
