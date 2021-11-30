@@ -33,7 +33,8 @@ module.exports = (db) => {
     req.session.quiz_id = req.params.quizid;
     db.query(`
        INSERT INTO questions (quiz_id, question)
-       VALUES ($1, $2) RETURNING *;`, [req.params.quizid, req.body.question])
+       VALUES ($1, $2)
+       RETURNING *;`, [req.params.quizid, req.body.question])
       .then(data => {
         res.redirect(`/quiz/${req.session.quiz_id}/quiz/${data.rows[0].id}`);
       })
