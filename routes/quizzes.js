@@ -1,20 +1,23 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
-module.exports = (db) => {
-  router.get("/", (req, res) => {
-    let query = `SELECT * FROM quizzes`;
-    console.log(query);
-    db.query(query)
-      .then(data => {
-        const quizzes = data.rows;
-        res.json({ quizzes });
-      })
-      .catch(e => {
-        console.error(e);
-        res.send(e);
-      });
-  });
-  return router;
-};
-
+// module.exports = (db) => {
+//   //displays all the publicly available quizzes
+//   router.get("/", (req, res) => {
+//     //const user_id = req.session.user_id;
+//     db.getQuizzes(10)
+//       .then(data => {
+//         const templateVars = {
+//           //user_id,
+//           quizzes: data
+//         };
+//         res.render("view_quizzes", templateVars);
+//       })
+//       .catch(err => {
+//         res
+//           .status(500)
+//           .json({ error: err.message });
+//       });
+//   });
+//   return router;
+// };
