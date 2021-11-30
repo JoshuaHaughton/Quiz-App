@@ -16,16 +16,20 @@
 
     <main style="margin: 1em;">
       <h3>Create Your Quiz</h3>
-      <form class="form-inline" action="/urls" method="POST">
+      <form class="form-inline" action="/users/<%= user.id %>" method="POST">
         <div class="form-group mb-2" style="display: block">
           <label for="title">Quiz Title:</label>
           <input class="form-control" type="text" name="title" placeholder="Input the Title of Your Quiz" style="width: 300px; margin: 1em">
-
-          <label for="question-1">Question 1:</label>
-          <input class="form-control" type="text" name="question-1" placeholder="Input Question" style="width: 300px; margin: 1em">
-          <input class="form-control" type="text" name="question-1" placeholder="True or False?" style="width: 300px; margin: 1em">
           <br>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <label for="description">Question Description:</label>
+          <input id="description" type="text" name="description">
+          <br>
+          <div>
+            <input id="is-private" class="form-control" type="text" name="question-1" placeholder="Input Question" style="width: 300px; margin: 1em" value="true">
+            <input id="is-public" class="form-control" type="text" name="question-1" placeholder="True or False?" style="width: 300px; margin: 1em" value="false">  
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary">Add Question</button>
         </div>
       </form>
     </main>
