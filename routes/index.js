@@ -4,18 +4,15 @@ const router  = express.Router();
 
 
 module.exports = (db) => {
-  router.get('/', (req, res) => {
-    // req.session.user_id = req.params.user_id;
-    db.query(`
-    SELECT title, description
-    FROM quizzes
-    LIMIT 3;
-    `)
+
+  router.get("/:quizid/questions", (req, res) => {
+    req.session.quiz_id = req.params.quizid;
+    db.query(`SELECT id, user_id FROM quizzes WHERE id = $1`, [req.params.quizid])
       .then(data => {
-        // const templateVar = {quizzes: data.rows, user_id: req.params.user_id};
-        const templateVar = {quizzes: data.rows};
-        res.render('../views/index', templateVar);
+        let templateVar = { quizId: req.params.quizid, user: data.rows[0] };
+        res.render('../views/questions', templateVar);
       });
   });
+
   return router;
 };
