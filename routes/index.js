@@ -6,16 +6,19 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get('/', (req, res) => {
-    req.session.user_id = req.params.user_id;
     db.query(`
-    SELECT title, description
+    SELECT title, description, users.username as name
     FROM quizzes
+    JOIN users ON users.id = owner_id
     WHERE public = true
-    LIMIT 3;
+    LIMIT 10;
     `)
       .then(data => {
-        const templateVar = {quizzes: data.rows, user_id: req.params.user_id};
+        const templateVar = {quizzes: data.rows};
         res.render('../views/index', templateVar);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 

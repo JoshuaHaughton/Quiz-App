@@ -46,12 +46,17 @@ app.use(express.static("public"));
 const quizzesRoutes = require("./routes/quizzes");
 const usersRoutes = require('./routes/users')
 const root = require("./routes/index");
+// const makersRoutes = require("./routes/makers");
+const takersRoutes = require("./routes/takers");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/user", usersRoutes(db));
 app.use("/quizzes", quizzesRoutes(db));
 app.use("/", root(db));
+// app.use("/makers", makersRoutes(db));
+app.use("/takers", takersRoutes(db));
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -61,6 +66,7 @@ app.use("/", root(db));
 // app.get("/", (req, res) => {
 //  res.render('index');
 // });
+
 
 
 app.listen(PORT, () => {
