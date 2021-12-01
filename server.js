@@ -43,13 +43,13 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const root = require("./routes/index");
-const makersRoutes = require("./routes/makers");
+// const makersRoutes = require("./routes/makers");
 const takersRoutes = require("./routes/takers");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/", root(db));
-app.use("/makers", makersRoutes(db));
+// app.use("/makers", makersRoutes(db));
 app.use("/takers", takersRoutes(db));
 
 

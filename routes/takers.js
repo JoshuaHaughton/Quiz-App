@@ -28,10 +28,10 @@ module.exports = (db) => {
       .then((data) => {
         const templateVars = { quiz: { ...data.rows[0] } };
         res
-          .render("quiz", templateVars);
+          .render('../views/quiz', templateVars);
       })
-      .catch(() => {
-        res.redirect(`../views/error_page`);
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
@@ -49,10 +49,10 @@ module.exports = (db) => {
       .then((data) => {
         const templateVars = { quiz: { ...data.rows[0] } };
         res
-          .render("quiz_result", templateVars);
+          .render('../views/quiz_result', templateVars);
       })
-      .catch(() => {
-        res.redirect(`../views/error_page`);
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
@@ -62,8 +62,8 @@ module.exports = (db) => {
       .then(() => {
         res.redirect(`/takers/${id}/results`);
       })
-      .catch(() => {
-        res.redirect(`../views/error_page`);
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
