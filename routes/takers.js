@@ -30,10 +30,8 @@ module.exports = (db) => {
         res
           .render("quiz", templateVars);
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch(() => {
+        res.redirect(`../views/error_page`);
       });
   });
 
@@ -53,13 +51,21 @@ module.exports = (db) => {
         res
           .render("quiz_result", templateVars);
       })
-      .catch((err) => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch(() => {
+        res.redirect(`../views/error_page`);
       });
   });
 
+  router.post("/:id/", (req, res) => {
+    const id = req.params.id;
+    db.query("SELECT 1")
+      .then(() => {
+        res.redirect(`/takers/${id}/results`);
+      })
+      .catch(() => {
+        res.redirect(`../views/error_page`);
+      });
+  });
 
   return router;
 };
