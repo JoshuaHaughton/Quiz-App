@@ -31,7 +31,7 @@ module.exports = (db) => {
     LIMIT 3;
     `)
       .then(data => {
-        console.log(req);
+        console.log(req.body);
     const templateVar = {id: id};
     res.render("../views/new_quiz", templateVar);
       });
