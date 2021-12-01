@@ -26,8 +26,8 @@
             <tr>
               <td><%= quiz.title %></td>
               <td><%= quiz.description %></td>
-              <td></td>
-              <td></td>
+              <td><%= quiz.name %></td>
+              <td><a href="/taker/<%= quiz.id %>" class="takeBT styleBT">Start</a></td>
             </tr>
             <%}%>
       </tbody>
