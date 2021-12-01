@@ -9,21 +9,51 @@ const router  = express.Router();
 
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+  // router.get("/", (req, res) => {
+  //   db.query(`SELECT * FROM users;`)
+  //     .then(data => {
+  //       const users = data.rows;
+  //       res.json({ users });
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
+
+  router.get("/new", (req, res) => {
+    const id = req.params.user_id;
+    db.query(`
+    SELECT id
+    FROM users
+    WHERE public = true
+    LIMIT 3;
+    `)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+        console.log(req);
+    const templateVar = {id: id};
+    res.render("../views/new_quiz", templateVar);
       });
   });
 
-  router.get("/new", (req, res) => {
-    res.render("new_quiz");
+
+  router.post("/new/", (req, res) => {
+    console.log(req.body);
+    const id = 1; // generate id for quiz
+    //Stretch: check database to see if generated id matches an existing id in database, and regenerate ids until original id is generated
+    // db.query("
+    // INSERT INTO users (id, title, description) values (7, 'Pertusaria floridana Dibben', 'Spermophilus parryii');
+
+    // 1")
+      // Replace with Query to send new quiz data to database using id
+      // Stretch: if identical quiz already exists in database, give user error message
+      // .then(() => {
+      //   res.redirect(`/m/${id}/`); // redirect to maker quiz page using the id generated as a redirect url
+      // })
+      // .catch((err) => {
+      //   res.status(500).json({ error: err.message });
+      // });
   });
 
 
