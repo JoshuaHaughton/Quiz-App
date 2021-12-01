@@ -7,7 +7,7 @@ module.exports = (db) => {
 
   router.get('/', (req, res) => {
     db.query(`
-    SELECT title, description, users.username as name
+    SELECT quizzes.id as id ,title, description, users.username as name
     FROM quizzes
     JOIN users ON users.id = owner_id
     WHERE public = true

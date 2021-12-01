@@ -10,10 +10,10 @@
   <%- include('partials/_header') %>
   <h3 class="quiz_title"><%= quiz.title %></h3>
   <p class="question">
-    <span>Q.</span> <%= quiz.question %>
+    <span>Q.</span> <%= quiz.questions %>
   </p>
 
-  <form action="" method="POST" id="take-quiz-form">
+  <!-- <form action="" method="POST" id="take-quiz-form">
     <div class="form-inline-wrap">
       <input type="radio" id="possiblea1" name="pick_answer" value="1">
       <label for="take_quiz_option1"><%= quiz.answer1 %></label>
@@ -21,30 +21,13 @@
     <div class="form-inline-wrap">
       <input type="radio" id="possiblea2" name="pick_answer" value="2">
       <label for="take_quiz_option2"><%= quiz.answer2 %></label>
-    </div>
+    </div> -->
 
     <div class="form-inline-wrap">
-      <label for="taker_name">Your name</label>
+      <label for="taker_name">Your username</label>
       <input type="text" id="taker" name="taker_name" placeholder="optional">
       <button type="submit">Submit answer</button>
     </div>
-
-
-<!-- <% if(typeof user !== 'undefined') { %>
-  <% for (quiz of quizzes) { %>
-    if (quizzes.public) {
-  <div class="card text-center">
-      <div class="card-header"></div>
-      <div class="card-body">
-        <h5 class="card-title">Quiz <%= quizzes.id %> </h5>
-        <p class="card-text"><%= quizzes.description %></p>
-      </div>
-        <% } else { %>
-          <h2 style='padding: 25px;'>Please login to see your URLs!</h2>
-          <% } %>
-          <h2 style='padding: 25px;'>Please login to see your Quizzes!</h2>
-          <% } %>
-        <% } %> -->
 
     </div>
   </div>
