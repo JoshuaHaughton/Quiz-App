@@ -42,15 +42,23 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-// const usersRoutes = require("./routes/users");
-const quizzesRoutes = require("./routes/quizzes");
 const root = require("./routes/index");
+// const usersRoutes = require("./routes/users");
+// const quizzesRoutes = require("./routes/quizzes");
+// const questionRoutes = require("./routes/questions");
+// const attemptsRoutes = require("./routes/attempts");
+const makersRoutes = require("./routes/makers");
+const takersRoutes = require("./routes/takers");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-// app.use("/users", usersRoutes(db));
-app.use("/quizzes", quizzesRoutes(db));
 app.use("/", root(db));
+// app.use("/users", usersRoutes(db));
+// app.use("/quizzes", quizzesRoutes(db));
+// app.use("/questions", questionRoutes(db));
+// app.use("/attempts", attemptsRoutes(db));
+app.use("/makers", makersRoutes(db));
+app.use("/takers", takersRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
