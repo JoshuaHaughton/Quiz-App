@@ -8,7 +8,6 @@
 
 <body>
   <%- include('partials/_header') %>
-
   <h3 class="quiz_title"><%= quiz.title %></h3>
   <p class="question">
     <span>Q.</span> <%= quiz.question %>
@@ -29,27 +28,24 @@
       <input type="text" id="taker" name="taker_name" placeholder="optional">
       <button type="submit">Submit answer</button>
     </div>
-  <!-- <% if(typeof user !== 'undefined') { %>
+
+
+<!-- <% if(typeof user !== 'undefined') { %>
+  <% for (quiz of quizzes) { %>
+    if (quizzes.public) {
   <div class="card text-center">
       <div class="card-header"></div>
       <div class="card-body">
-        <h5 class="card-title">TinyURL for: <%= longURL %></h5>
-        <p class="card-text">Short URL: <a href="/u/<%= shortURL %>"><%= shortURL %></a></p>
+        <h5 class="card-title">Quiz <%= quizzes.id %> </h5>
+        <p class="card-text"><%= quizzes.description %></p>
       </div>
-    <div class="card-footer text-muted">
-      <h3 style='margin-bottom: 20px; color: black'>Edit</h3>
-      <form method="POST" action="/urls/<%= shortURL %>/update?_method=PUT">
-        <label for="newURL">New URL:</label>
-        <input type="text" name='newURL'>
-        <button type="submit" class='btn btn-primary'>
-          Update
-        </button>
-        </form>
-
         <% } else { %>
-
           <h2 style='padding: 25px;'>Please login to see your URLs!</h2>
-          <% } %> -->
+          <% } %>
+          <h2 style='padding: 25px;'>Please login to see your Quizzes!</h2>
+          <% } %>
+        <% } %> -->
+
     </div>
   </div>
 
