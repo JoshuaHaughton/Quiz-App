@@ -6,14 +6,14 @@ const bodyParser = require("body-parser");
 module.exports = (db) => {
 
   // Render the maker new quiz page
-  maker.get("/:id/new", (req, res) => {
+  maker.get("/new", (req, res) => {
     res.render("new_quiz");
   });
 
   // Submit the quiz to database
   maker.post("/new", (req, res) => {
     const id = 1; // generate id for quiz
-    const title = req.body.title
+    const title = req.body.title;
 
     db.query(`
     INSERT INTO quizzes (owner_id, title, description) values (11, 'Tripterocalyx micranthus (Torr.) Hook.', 'Laniaurius atrococcineus');

@@ -22,7 +22,13 @@
 
     </tbody>
   </table>
-
+<% for (let question of questions) { %>
+  <tr>
+    <td><%= question['questions'] %></td>
+    <td><a href="" type="submit" class="btn btn-warning">True</a></td>
+    <td><a href="" type="submit" class="btn btn-warning">False</a></td>
+  </tr>
+  <%}%>
 
 
 
