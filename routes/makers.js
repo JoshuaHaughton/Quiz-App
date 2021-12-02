@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 module.exports = (db) => {
 
   // Render the maker new quiz page
-  maker.get("/:id/new", (req, res) => {
+  maker.get("/new", (req, res) => {
     res.render("new_quiz");
   });
 
