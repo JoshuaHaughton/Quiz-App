@@ -1,49 +1,38 @@
-/*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
-*/
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const maker = express.Router();
+const bodyParser = require("body-parser");
 
-
+// Home page Routes
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
+  // Render the maker new quiz page
+  maker.get("/:id/new", (req, res) => {
+    db.query(`
+    INSERT INTO quizzes (owner_id, title, description) values (11, 'Tripterocalyx micranthus (Torr.) Hook.', 'Laniaurius atrococcineus');
+    SELECT id
+    FROM quizzes
+    WHERE title = $1;`, [title])
+    res.render("new_quiz");
+  });
+
+  // Submit the quiz to database
+  maker.post("/new", (req, res) => {
+    const id = 1; // generate id for quiz
+    const title = req.body.title
+
+    db.query(`
+    INSERT INTO quizzes (owner_id, title, description) values (11, 'Tripterocalyx micranthus (Torr.) Hook.', 'Laniaurius atrococcineus');
+    SELECT id
+    FROM quizzes
+    WHERE title = $1;`, [title])
+
+      .then((data) => {
+        res.redirect(`/${data}/`);
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
-  return router;
+
+
+  return maker;
 };
-
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
-
-// app.get("/register", (req, res) => {
-//   res.render("register");
-// });
-
-// app.get("/login", (req, res) => {
-//   res.render("login");
-// });
-
-// app.get("/quiz", (req, res) => {
-//   res.render("quiz");
-// });
-
-// app.get("/new", (req, res) => {
-//   res.render("new_quiz");
-// });
-
-// app.listen(PORT, () => {
-//   console.log(`Example app listening on port ${PORT}`);
-// });
