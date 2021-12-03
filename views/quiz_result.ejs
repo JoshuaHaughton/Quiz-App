@@ -5,37 +5,26 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <title>Quiz Menu</title>
 </head>
-
 <body>
   <%- include('partials/_header') %>
-
   <h2>Quiz Result</h2>
-  <section class="myQuiz"></section>
-
-
-
-
-  <!-- <% if(typeof user !== 'undefined') { %>
-  <div class="card text-center">
-      <div class="card-header"></div>
-      <div class="card-body">
-        <h5 class="card-title">TinyURL for: <%= longURL %></h5>
-        <p class="card-text">Short URL: <a href="/u/<%= shortURL %>"><%= shortURL %></a></p>
-      </div>
-    <div class="card-footer text-muted">
-      <h3 style='margin-bottom: 20px; color: black'>Edit</h3>
-      <form method="POST" action="/urls/<%= shortURL %>/update?_method=PUT">
-        <label for="newURL">New URL:</label>
-        <input type="text" name='newURL'>
-        <button type="submit" class='btn btn-primary'>
-          Update
-        </button>
-        </form>
-
+  <section class="myQuiz">
+    <div class="results">
+      <h1><%= attempt[0].name %></h1>
+      <div class="answer-results">
+        <% for (let answer of attempt) { %>
+        <span class="question-results"> Question: <%= answer.question %> </span>
+        <span class="input-answer"> Your Answer: <%= answer.answer %></span>
+        <% if (answer.iscorrect === false) { %>
+        <span class="false">WRONG</span>
+        <br>
         <% } else { %>
-
-          <h2 style='padding: 25px;'>Please login to see your URLs!</h2>
-          <% } %> -->
+          <span class="true">CORRECT</span>
+        <br>
+        <% } %>
+      <% } %>
+    </div>
+  </section>
     </div>
   </div>
 
